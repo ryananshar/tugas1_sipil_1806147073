@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -40,7 +40,7 @@ public class PilotModel implements Serializable {
     @NotNull
     // @Temporal(TemporalType.DATE)
 	@Column(name = "tanggal_lahir", nullable = false)
-	private LocalDate tanggalLahir;
+	private Date tanggalLahir;
 
     @NotNull
 	@Size(max = 255)
@@ -99,11 +99,11 @@ public class PilotModel implements Serializable {
         this.nomorNIK = nik;
     }
 
-    public LocalDate getTanggalLahir() {
+    public Date getTanggalLahir() {
         return this.tanggalLahir;
     }
 
-    public void setTanggalLahir(LocalDate tanggalLahir) {
+    public void setTanggalLahir(Date tanggalLahir) {
         this.tanggalLahir = tanggalLahir;
     }
 
