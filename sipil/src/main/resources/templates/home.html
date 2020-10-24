@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/general.css}"/>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="jumbotron jumbotron-fluid" id="center">
+        <div class="container">
+            <h1>Selamat datang di SIPILOT!</h1>
+            <p>Sipilot adalah sistem informasi untuk para pilot</p> 
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center" id="center">
+            <div class="col-md-4">
+                <h2> Daftar Fitur</h2>
+                <br>
+                <a th:href="@{#}" class="btn btn-success">
+                    Pilot
+                </a>
+                <a th:href="@{#}" class="btn btn-success">
+                    Penerbangan
+                </a>
+                <a th:href="@{#}" class="btn btn-success">
+                    Cari
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

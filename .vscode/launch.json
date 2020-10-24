@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SipilApplication<sipil>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "apap.tugas.sipil.SipilApplication",
+            "projectName": "sipil",
+            "args": ""
+        }
+    ]
+}
