@@ -52,7 +52,7 @@ public class PilotModel implements Serializable {
     private Integer jenisKelamin;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "no_akdemi", referencedColumnName = "id_akademi", nullable = false)
+    @JoinColumn(name = "no_akademi", referencedColumnName = "id_akademi", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private AkademiModel akademiModel;

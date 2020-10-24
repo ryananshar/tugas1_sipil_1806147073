@@ -22,8 +22,8 @@ public class PilotServiceImpl implements PilotService {
 
     @Override
     public List<PilotModel> getPilotList() {
-        return pilotDb.findAll();
-        // return pilotDb.findAllByOrderByIdPilotAsc();
+        // return pilotDb.findAll();
+        return pilotDb.findAllByOrderByIdPilotAsc();
     }
 
     @Override
@@ -43,7 +43,12 @@ public class PilotServiceImpl implements PilotService {
         } else {
             throw new Exception("Pilot tidak bisa dihapus karena masih memiliki penerbangan.");
         }
-
     }
+
+    // private String nipGenerator(PilotModel pilot) {
+    //     return null;
+    // }
+
+    
     
 }

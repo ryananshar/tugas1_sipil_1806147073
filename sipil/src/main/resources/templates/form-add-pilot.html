@@ -10,12 +10,13 @@
 
 <body>
     <nav th:replace="fragments/fragment :: navbar"></nav>
+    <br>
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-4">
                 <div class="card">
                     <div class="card-header" id="text-center">
-                        <h3>Tambah Pilot</h3>
+                        <h4>Tambah Pilot</h4>
                     </div>
                     <div class="card-body">
                         <form th:action="@{/pilot/tambah}" th:object="${pilot}" method="POST">
@@ -46,8 +47,26 @@
                                     <option value="2">Perempuan</option>
                                 </select>
                             </div>
-                            <a class="btn btn-outline-primary" type="button" th:href="@{/}">Batal</a>
-                            <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+                            <div class="form-group">
+                                <label for="no_akademi">Sekolah:</label>
+                                <select name="akademiModel" class="form-control" id="no_akademi" required>
+                                    <option th:each="akademi, iterationStatus: ${listAkademi}"
+                                    th:text="${akademi.namaAkademi}" th:value="${akademi}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="no_maskapai">Maskapai:</label>
+                                <select name="maskapaiModel" class="form-control" id="no_maskapai" required>
+                                    <option th:each="maskapai, iterationStatus : ${listMaskapai}" 
+                                    th:text="${maskapai.namaMaskapai}" th:value="${maskapai}"></option>
+                                </select>
+                            </div>
+                            <br><br>
+                            <div class="row justify-content-end">
+                                
+                                <a class="btn btn-outline-primary" type="button" th:href="@{/}">Batal</a>
+                                <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>

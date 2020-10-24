@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Pilot</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/general.css}"/>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="jumbotron jumbotron-fluid" id="center">
+        <div class="container-fluid">
+            <div class="row justify-content-center" id="center">
+                <div class="col-md-4">
+                    <h2 th:text="'Pilot dengan NIP ' + ${pilot.nomorNIP}"></h2>
+                    <h2 th:text="'berhasil ditambahkan'"></h2>
+                </div>
+            </div>
+            <br><br>
+            <div class="row justify-content-center" id="center">
+                <div class="col-md-4">
+                    <a th:href="@{#}" class="btn btn-success">
+                        Kembali ke Daftar Pilot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>        
+</body>
+</html>
