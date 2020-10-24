@@ -28,7 +28,7 @@ public class PilotModel implements Serializable {
     @NotNull
     @Size(max = 255)
     // Sementara hingga custom generator terpikir
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "no_nip", nullable = false, unique = true)
     private String nomorNIP;
     

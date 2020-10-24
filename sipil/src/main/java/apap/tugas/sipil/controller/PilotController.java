@@ -34,6 +34,13 @@ public class PilotController {
         return "home";
     }
 
+    @RequestMapping("/pilot")
+    public String listPilot(Model model) {
+        List<PilotModel> listPilot = pilotService.getPilotList();
+        model.addAttribute("listResep", listPilot);
+        return "list-pilot";
+    }
+
     @GetMapping("/pilot/tambah")
     public String addPilotFormPage(Model model) {
         List<AkademiModel> listAkademi = akademiService.getAkademiList();
