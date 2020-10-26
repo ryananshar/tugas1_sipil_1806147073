@@ -102,9 +102,9 @@ public class PenerbanganController {
     //     return "delete-penerbangan";
     // }
 
-    @GetMapping({"/penerbangan/hapus/{idPilot}", "/penerbangan/hapus/"})
+    @GetMapping({"/penerbangan/hapus/{idPenerbangan}", "/penerbangan/hapus/"})
     public String deletePenerbangan(
-            @PathVariable(value = "noResep", required = false) Long idPenerbangan,
+            @PathVariable(value = "idPenerbangan", required = false) Long idPenerbangan,
             Model model
     ) throws Exception {
         if (idPenerbangan != null) {
@@ -112,17 +112,19 @@ public class PenerbanganController {
                 PenerbanganModel penerbangan = penerbanganService.getPenerbanganByIdPenerbangan(idPenerbangan);
                 penerbanganService.deletePenerbangan(penerbangan);
                 model.addAttribute("penerbangan", penerbangan);
+                model.addAttribute("idPenerbangan", idPenerbangan);
 
                 return "delete-penerbangan";
             } else if (hasPilot(idPenerbangan)) {
-                model.addAttribute("msg", "Penerbangan masih memiliki pilot! Hapus pilot terlebih dahulu!");
+                model.addAttribute("idPenerbangan", idPenerbangan);
+                model.addAttribute("msg", "0");
 
                 return "delete-penerbangan";
             }
         }
-        model.addAttribute("msg", "Nomor Resep Tidak Ditemukan atau Nomor Resep Tidak Ada!");
+        model.addAttribute("msg", "1");
 
-        return "delete-error";
+        return "delete-penerbangan";
     }
 
     private boolean hasPilot(Long idPenerbangan) {

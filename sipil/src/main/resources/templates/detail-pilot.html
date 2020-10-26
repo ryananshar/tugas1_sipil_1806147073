@@ -71,7 +71,10 @@
                                         <br>
                                         <div th:text="': ' + ${pilot.nomorNIK}"></div>
                                         <br>
-                                        <div th:text="': ' + ${pilot.jenisKelamin}"></div>
+                                        <div th:if="${pilot.jenisKelamin} == '1'"
+                                            th:text="': ' + 'Laki-laki'"></div>
+                                            <div th:if="${pilot.jenisKelamin} == '2'"
+                                            th:text="': ' + 'Perempuan'"></div>
                                         <br>
                                         <div th:text="': ' + ${pilot.nomorNIP}"></div>
                                         <br>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Penerbangan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/general.css}"/>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="jumbotron jumbotron-fluid" id="center">
+        <div class="container-fluid">
+            <div th:if="${msg} == null">
+                <div class="row justify-content-center" id="center">
+                    <div class="col-md-4">
+                        <h2 th:text="'Penerbangan ' + ${idPenerbangan}"></h2>
+                        <h2 th:text="'berhasil dihapus'"></h2>
+                    </div>
+                </div>
+            </div>
+            <div th:unless="${msg} == null">
+                <div th:if="${msg} == '0'">
+                    <div class="row justify-content-center" id="center">
+                        <div class="col-md-4">
+                            <h2 th:text="'Penerbangan ' + ${idPenerbangan} + ' gagal dihapus'"></h2>
+                            <h2 th:text="'karena kode penerbangan tidak ditemukan'"></h2>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${msg} == '1'">
+                    <div class="row justify-content-center" id="center">
+                        <div class="col-md-6">
+                            <h2 th:text="'Tidak ada kode penerbangan'"></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="row justify-content-center" id="center">
+                <div class="col-md-4">
+                    <a th:href="@{/penerbangan}" class="btn btn-success">
+                        Kembali ke Daftar Penerbangan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>        
+</body>
+</html>

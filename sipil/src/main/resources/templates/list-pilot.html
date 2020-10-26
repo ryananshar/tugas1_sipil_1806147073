@@ -49,7 +49,7 @@
                                             <td th:if="${pilot.jenisKelamin == 2}">Perempuan</td>
                                             <td>
                                                 <a th:href="@{/pilot/} + ${pilot.nomorNIP}" class="btn btn-success" >Lihat</a>
-                                                <a th:href="@{/pilot/ubah/} + ${pilot.nomorNIK}" class="btn btn-outline-success">Ubah</a>
+                                                <a th:href="@{/pilot/ubah/} + ${pilot.nomorNIP}" class="btn btn-outline-success">Ubah</a>
                                                 <a th:href="@{/pilot/hapus/} + ${pilot.idPilot}" class="btn btn-danger">Hapus</a>
                                             </td>                                                
                                         </tr>
