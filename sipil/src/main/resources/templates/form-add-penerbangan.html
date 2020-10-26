@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Add Penerbangan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/general.css}"/>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <br>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header" id="text-center">
+                        <h4>Tambah Penerbangan</h4>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/penerbangan/tambah}" th:object="${penerbangan}" method="POST">
+                            <div class="form-group">
+                                <label for="kode_penerbangan">Kode:</label>
+                                <input th:field="*{kodePenerbangan}" type="text" class="form-control" 
+                                    placeholder="Masukan kode penerbangan" id="kode_penerbangan" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="waktu_penerbangan">Waktu:</label>
+                                <input th:field="*{waktuPenerbangan}" type="datetime-local" class="form-control" 
+                                    placeholder="Masukan waktu penerbangan" id="waktu_penerbangan" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="kota_asal">Kota Asal</label>
+                                <input th:field="*{kotaAsal}" type="text" class="form-control" 
+                                    placeholder="Masukan kota asal" id="kota_asal" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="kota_tujuan">Kota Tujuan</label>
+                                <input th:field="*{kotaTujuan}" type="text" class="form-control" 
+                                    placeholder="Masukan kota tu" id="kota_tujuan" required>
+                            </div>
+                            <br><br>
+                            <div class="row justify-content-end">
+                                
+                                <a class="btn btn-outline-primary" type="button" th:href="@{/}">Batal</a>
+                                <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
