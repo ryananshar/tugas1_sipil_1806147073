@@ -25,5 +25,5 @@ public interface PilotService {
     PilotModel updatePilot(PilotModel pilot);
 
     // Method untuk delete 
-    void deletePilot(PilotModel pilot) throws Exception;
+    void deletePilot(Long idpilot);
 }

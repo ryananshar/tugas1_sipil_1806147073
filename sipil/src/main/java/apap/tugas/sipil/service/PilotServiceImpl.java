@@ -44,12 +44,8 @@ public class PilotServiceImpl implements PilotService {
     }
 
     @Override
-    public void deletePilot(PilotModel pilot) throws Exception {
-        if (pilot.getListPilotPenerbangan().isEmpty()) {
-            pilotDb.deleteById(pilot.getIdPilot());
-        } else {
-            throw new Exception("Pilot tidak bisa dihapus karena masih memiliki penerbangan.");
-        }
+    public void deletePilot(Long idpilot) {
+        pilotDb.deleteByIdPilot(idpilot);
     }
 
     @Override

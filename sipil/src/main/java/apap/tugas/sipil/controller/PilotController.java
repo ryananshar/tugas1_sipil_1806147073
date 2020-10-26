@@ -115,4 +115,14 @@ public class PilotController {
         }
                 
     }
+
+    @GetMapping("/pilot/hapus/{idPilot}")
+    public String deleteObat(@PathVariable Long idPilot, Model model) {
+        PilotModel pilot = pilotService.getPilotByIdPilot(idPilot);
+        pilotService.deletePilot(idPilot);
+        model.addAttribute("pilot", pilot);
+        model.addAttribute("idPilot", idPilot);
+
+        return "delete-pilot";
+    }
 }

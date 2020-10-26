@@ -17,5 +17,7 @@ public interface PilotDb extends JpaRepository<PilotModel, Long>{
     Optional<PilotModel> findByNomorNIK(String nomorNIK);
     
     List<PilotModel> findAllByOrderByIdPilotAsc();
+
+	void deleteByIdPilot(Long idpilot);
 }
 
