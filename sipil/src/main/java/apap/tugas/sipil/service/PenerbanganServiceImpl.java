@@ -28,6 +28,7 @@ public class PenerbanganServiceImpl implements PenerbanganService {
     @Override
     public PenerbanganModel getPenerbanganByIdPenerbangan(Long idPenerbangan) {
         return penerbanganDb.findByIdPenerbangan(idPenerbangan).get();
+        
     }
 
     @Override

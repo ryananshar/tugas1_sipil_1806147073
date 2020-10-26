@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Penerbangan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/general.css}"/>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <a 
+                    th:href="@{/penerbangan/tambah}"
+                    class="btn btn-success"
+                    >Tambah Penerbangan</a
+                >
+                <br><br>
+                <div class="card">
+                    <div class="card-header" id="center">
+                        <h3>Daftar Penerbangan</h3>
+                    </div>
+                    <div class="card-body">                
+                        <div class="form-row">
+                            <div class="col">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kode Penerbangan</th>
+                                            <th>Waktu</th>
+                                            <th>Kota Asal</th>
+                                            <th>Kota Tujuan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="penerbangan : ${listPenerbangan}">
+                                            <td th:text="${penerbangan.idPenerbangan}"></td>
+                                            <td th:text="${penerbangan.kodePenerbangan}"></td>
+                                            <td th:text="${penerbangan.waktuPenerbangan}"></td>
+                                            <td th:text="${penerbangan.kotaAsal}"></td>
+                                            <td th:text="${penerbangan.kotaTujuan}"></td>
+                                            <td>
+                                                <a th:href="@{/penerbangan/detail/} + ${penerbangan.idPenerbangan}" class="btn btn-success" >Lihat</a>
+                                                <a th:href="@{#} + ${penerbangan.idPenerbangan}" class="btn btn-outline-success">Ubah</a>
+                                                <a th:href="@{#} + ${penerbangan.idPenerbangan}" class="btn btn-danger">Hapus</a>
+                                            </td>                                                
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

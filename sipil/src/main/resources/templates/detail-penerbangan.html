@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Detail Pilot</title>
+    <title>Detail Penerbangan</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     <link rel="stylesheet" th:href="@{/css/general.css}"/>
@@ -14,7 +14,7 @@
     <div class="container-fluid">
         <div th:if="${message} != null">  
             <div class="row justify-content-center">
-                <div class="col-6">
+                <div class="col-5">
                     <div class="card">
                         <div class="card-header">
                             Error
@@ -40,54 +40,38 @@
                     <div class="col-5">
                         <div class="card">
                             <div class="card-header" id="text-center">
-                                <h4>Detail Pilot</h4>
+                                <h4>Detail Penerbangan</h4>
                             </div>
                             <div class="card-body">                
                                 <div class="form-row">
                                     <div class="col-5">
                                         <div th:text="'ID'"></div>
                                         <br>
-                                        <div th:text="'Nama'"></div>
+                                        <div th:text="'Kode Penerbangan'"></div>
                                         <br>
-                                        <div th:text="'NIK'"></div>
+                                        <div th:text="'Waktu'"></div>
                                         <br>
-                                        <div th:text="'Jenis Kelamin'"></div>
+                                        <div th:text="'Kota Asal'"></div>
                                         <br>
-                                        <div th:text="'NIP'"></div>
-                                        <br>
-                                        <div th:text="'Tempat Lahir'"></div>
-                                        <br>
-                                        <div th:text="'Tanggal Lahir'"></div>
-                                        <br>
-                                        <div th:text="'Sekolah'"></div>
-                                        <br>
-                                        <div th:text="'Maskapai'"></div>
+                                        <div th:text="'Kota Tujuan'"></div>
                                         <br>
                                     </div>
                                     <div class="col">
-                                        <div th:text="': ' + ${pilot.idPilot}"></div>
+                                        <div th:text="': ' + ${penerbangan.getIdPenerbangan()}"></div>
                                         <br>
-                                        <div th:text="': ' + ${pilot.namaPilot}"></div>
+                                        <div th:text="': ' + ${penerbangan.kodePenerbangan}"></div>
                                         <br>
-                                        <div th:text="': ' + ${pilot.nomorNIK}"></div>
+                                        <div th:text="': ' + ${penerbangan.waktuPenerbangan}"></div>
                                         <br>
-                                        <div th:text="': ' + ${pilot.jenisKelamin}"></div>
+                                        <div th:text="': ' + ${penerbangan.kotaAsal}"></div>
                                         <br>
-                                        <div th:text="': ' + ${pilot.nomorNIP}"></div>
-                                        <br>
-                                        <div th:text="': ' + ${pilot.tempatLahir}"></div>
-                                        <br>
-                                        <div th:text="': ' + ${pilot.tanggalLahir}"></div>
-                                        <br>
-                                        <div th:text="': ' + ${pilot.getAkademiModel().getNamaAkademi()}"></div>
-                                        <br>
-                                        <div th:text="': ' + ${pilot.getMaskapaiModel().getNamaMaskapai()}"></div>
+                                        <div th:text="': ' + ${penerbangan.kotaTujuan}"></div>
                                         <br>
                                     </div>
                                 </div>
                                 <div class="row justify-content-end">
-                                    <a th:href="@{/pilot/ubah/} + ${pilot.nomorNIK}" class="btn btn-success">Ubah Pilot</a>
-                                    <a th:href="@{/pilot/hapus/} + ${pilot.idPilot}" class="btn btn-danger">Hapus Pilot</a>
+                                    <a th:href="@{#} + ${penerbangan.idPenerbangan}" class="btn btn-success">Ubah Pilot</a>
+                                    <a th:href="@{#} + ${penerbangan.idPenerbangan}" class="btn btn-danger">Hapus Pilot</a>
                                 </div>                            
                             </div>
                         </div>
@@ -100,33 +84,31 @@
                     <div class="col-9">
                         <div class="card">
                             <div class="card-header" id="text-center">
-                                <h4>Jadwal Bertugas</h4>
+                                <h4>Daftar Pilot</h4>
                             </div>
                             <div class="card-body">                
                                 <div class="form-row">
                                     <div class="col">
-                                        <table class="table">
+                                        <table class="table" id="center">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kode Penerbangan</th>
-                                                    <th>Waktu</th>
-                                                    <th>Kota Asal</th>
-                                                    <th>Kota Tujuan</th>
-                                                    <th>Aksi</th>
+                                                    <th>Nama</th>
+                                                    <th>NIP</th>
+                                                    <th>Tanggal Lahir</th>
+                                                    <th>Jenis Kelamin</th>
+                                                    <th>Tanggal Penugasan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr th:each="penerbangan, iterationStatus : ${listPenerbangan}">
+                                                <tr th:each="pilot, iterationStatus : ${listPilot}">
                                                     <td th:text="${iterationStatus.count}"></td>
-                                                    <td th:text="${penerbangan.penerbanganModel.idPenerbangan}"></td>
-                                                    <td th:text="${penerbangan.penerbanganModel.kodePenerbangan}"></td>
-                                                    <td th:text="${penerbangan.penerbanganModel.waktuPenerbangan}"></td>
-                                                    <td th:text="${penerbangan.penerbanganModel.kodeAsal}"></td>
-                                                    <td th:text="${penerbangan.penerbanganModel.kode_tujuan}"></td>
-                                                    <td>
-                                                        <a th:href="@{#} + ${penerbangan.idPenerbangan}" class="btn btn-success">Lihat</a>
-                                                    </td>
+                                                    <td th:text="${pilot.pilotModel.idPilot}"></td>
+                                                    <td th:text="${pilot.pilotModel.namaPilot}"></td>
+                                                    <td th:text="${pilot.pilotModel.nomorNIP}"></td>
+                                                    <td th:text="${pilot.pilotModel.tanggalLahir}"></td>
+                                                    <td th:text="${pilot.pilotModel.jenisKelamin}"></td>
+                                                    <td th:text="${pilot.tanggalPenugasan}"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -136,8 +118,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
-           
+            </section>           
         </div>
     </div>
 </body>

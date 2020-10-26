@@ -32,7 +32,7 @@ public class PenerbanganController {
 
     @GetMapping({"/penerbangan/detail/{idPenerbangan}", "/penerbangan/detail/"})
     public String viewDetailPilot(
-        @PathVariable(value = "nomorNIP", required = false) Long idPenerbangan,
+        @PathVariable(value = "idPenerbangan", required = false) Long idPenerbangan,
         Model model
     ) {
         try {
