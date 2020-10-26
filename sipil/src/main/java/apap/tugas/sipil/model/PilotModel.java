@@ -3,8 +3,10 @@ package apap.tugas.sipil.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -15,8 +17,8 @@ import java.util.List;
 @Table(name = "pilot")
 public class PilotModel implements Serializable {
     @Id
-    @Size(max = 20)
-	@Column(name = "id_pilot")
+    @Max(20)
+	@Column(name = "id_pilot", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPilot;
 
@@ -26,9 +28,7 @@ public class PilotModel implements Serializable {
     private String namaPilot;
     
     @NotNull
-    @Size(max = 255)
-    // Sementara hingga custom generator terpikir
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Size(max = 13)
 	@Column(name = "no_nip", nullable = false, unique = true)
     private String nomorNIP;
     
@@ -38,8 +38,9 @@ public class PilotModel implements Serializable {
     private String nomorNIK;
     
     @NotNull
-    // @Temporal(TemporalType.DATE)
-	@Column(name = "tanggal_lahir", nullable = false)
+    @Temporal(TemporalType.DATE)
+    @Column(name = "tanggal_lahir", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date tanggalLahir;
 
     @NotNull
@@ -67,6 +68,7 @@ public class PilotModel implements Serializable {
     private List<PilotPenerbanganModel> listPilotPenerbangan;
     
 
+
     public Long getIdPilot() {
         return this.idPilot;
     }
@@ -83,20 +85,20 @@ public class PilotModel implements Serializable {
         this.namaPilot = namaPilot;
     }
 
-    public String getNip() {
+    public String getNomorNIP() {
         return this.nomorNIP;
     }
 
-    public void setNip(String nip) {
-        this.nomorNIP = nip;
+    public void setNomorNIP(String nomorNIP) {
+        this.nomorNIP = nomorNIP;
     }
 
-    public String getNik() {
+    public String getNomorNIK() {
         return this.nomorNIK;
     }
 
-    public void setNik(String nik) {
-        this.nomorNIK = nik;
+    public void setNomorNIK(String nomorNIK) {
+        this.nomorNIK = nomorNIK;
     }
 
     public Date getTanggalLahir() {
@@ -146,6 +148,7 @@ public class PilotModel implements Serializable {
     public void setListPilotPenerbangan(List<PilotPenerbanganModel> listPilotPenerbangan) {
         this.listPilotPenerbangan = listPilotPenerbangan;
     }
+    
 
     public boolean isPresent() {
 		return true;

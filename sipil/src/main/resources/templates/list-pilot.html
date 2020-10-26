@@ -10,46 +10,53 @@
 
 <body>
     <nav th:replace="fragments/fragment :: navbar"></nav>
-    <div class="jumbotron jumbotron-fluid" id="center">
-        <div class="container">
-            <h1>Selamat datang di SIPILOT!</h1>
-            <p>Sipilot adalah sistem informasi untuk para pilot</p> 
-        </div>
-    </div>
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                Daftar Pilot
-            </div>
-            <div class="card-body">                
-                <div class="form-row">
-                    <div class="col-10">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>NIP</th>
-                                    <th>NIK</th>
-                                    <th>Tanggal Lahir</th>
-                                    <th>Jenis Kelamin</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="pilot, iterationStatus : ${listPilot}">
-                                    <td th:text="${pilot.idPilot}"></td>
-                                    <td th:text="${pilot.namaPilot}"></td>
-                                    <td th:text="${pilot.nomorNIP}"></td>
-                                    <td th:text="${pilot.nomorNIK}"></td>
-                                    <td th:text="${pilot.tanggalLahir}"></td>
-                                    <td th:if="${pilot.jenisKelamin == 1}">Laki-laki</td>
-                                    <td th:if="${pilot.jenisKelamin == 2}">Perempuan</td>
-                                        <a th:href="@{/resep/view?noResep=} + ${resep.noResep}" class="btn btn-success" >Lihat</a>
-                                        <a th:href="@{/resep/change/} + ${resep.noResep}" class="btn btn-outline-success">Ubah</a>
-                                        <a th:href="@{/resep/delete/no-resep/} + ${resep.noResep}" class="btn btn-danger">Hapus</a>
-                                </tr>
-                            </tbody>
-                        </table>
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <a 
+                    th:href="@{/pilot/tambah}"
+                    class="btn btn-success"
+                    >Tambah Pilot</a
+                >
+                <br><br>
+                <div class="card">
+                    <div class="card-header" id="center">
+                        <h3>Daftar Pilot</h3>
+                    </div>
+                    <div class="card-body">                
+                        <div class="form-row">
+                            <div class="col">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>NIP</th>
+                                            <th>NIK</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="pilot, iterationStatus : ${listPilot}">
+                                            <td th:text="${pilot.idPilot}"></td>
+                                            <td th:text="${pilot.namaPilot}"></td>
+                                            <td th:text="${pilot.nomorNIP}"></td>
+                                            <td th:text="${pilot.nomorNIK}"></td>
+                                            <td th:text="${pilot.tanggalLahir}"></td>
+                                            <td th:if="${pilot.jenisKelamin == 1}">Laki-laki</td>
+                                            <td th:if="${pilot.jenisKelamin == 2}">Perempuan</td>
+                                            <td>
+                                                <a th:href="@{/pilot/} + ${pilot.nomorNIP}" class="btn btn-success" >Lihat</a>
+                                                <a th:href="@{#} + ${pilot.nomorNIK}" class="btn btn-outline-success">Ubah</a>
+                                                <a th:href="@{#} + ${pilot.idPilot}" class="btn btn-danger">Hapus</a>
+                                            </td>                                                
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

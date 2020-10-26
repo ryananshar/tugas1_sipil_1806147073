@@ -9,7 +9,8 @@ import java.util.List;
 @Entity 
 @Table(name = "akademi")
 public class AkademiModel implements Serializable {
-    @Id
+	@Id
+	@NotNull
     @Size(max = 20)
 	@Column(name = "id_akademi")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

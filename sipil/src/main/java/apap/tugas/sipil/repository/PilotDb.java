@@ -11,6 +11,10 @@ import java.util.Optional;
 @Repository
 public interface PilotDb extends JpaRepository<PilotModel, Long>{
     Optional<PilotModel> findByIdPilot(Long idPilot);
+
+    Optional<PilotModel> findByNomorNIP(String nomorNIP);
+
+    Optional<PilotModel> findByNomorNIK(String nomorNIK);
     
     List<PilotModel> findAllByOrderByIdPilotAsc();
 }

@@ -15,6 +15,12 @@ public interface PilotService {
     //  Method untuk mendapatkan list data berdasarkan id
     PilotModel getPilotByIdPilot(Long idpilot);
 
+    //  Method untuk mendapatkan list data berdasarkan NIP
+    PilotModel getPilotBynomorNIP(String nomorNIP);
+
+    //  Method untuk mendapatkan list data berdasarkan NIK
+    PilotModel getPilotBynomorNIK(String nomorNIK);
+
     // Method untuk update 
     PilotModel updatePilot(PilotModel pilot);
 

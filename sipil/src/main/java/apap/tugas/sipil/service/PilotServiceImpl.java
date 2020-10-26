@@ -19,6 +19,8 @@ public class PilotServiceImpl implements PilotService {
 
     @Override
     public void addPilot(PilotModel pilot) {
+        String nip = nipGenerator(pilot);
+        pilot.setNomorNIP(nip);
         pilotDb.save(pilot);
     }
 
@@ -47,6 +49,16 @@ public class PilotServiceImpl implements PilotService {
         }
     }
 
+    @Override
+    public PilotModel getPilotBynomorNIP(String nomorNIP) {
+        return pilotDb.findByNomorNIP(nomorNIP).get();
+    }
+
+    @Override
+    public PilotModel getPilotBynomorNIK(String nomorNIK) {
+        return pilotDb.findByNomorNIK(nomorNIK).get();
+    }
+
     // [0]      1 jenis kelamin (Laki-laki = 1, Perempuan = 2).
     // [1-2]    2 huruf awal tempat lahir dalam kapital.
     // [3]      1 karakter terakhir nama pilot.
@@ -57,31 +69,27 @@ public class PilotServiceImpl implements PilotService {
         StringBuilder builder = new StringBuilder();
 
         String gender = String.valueOf(pilot.getJenisKelamin());
-        String tmptLahir = pilot.getTempatLahir().substring(0, 1);
+        String tmptLahir = pilot.getTempatLahir().substring(0, 2);
         builder.append(gender);
-        builder.append(tmptLahir);
+        builder.append(tmptLahir.toUpperCase());
 
-        int nameSize = pilot.getNamaPilot().length();
-        String lastTwoCharName = pilot.getNamaPilot().substring(nameSize-1).toUpperCase();
+        String lastTwoCharName = pilot.getNamaPilot().substring(pilot.getNamaPilot().length()-1).toUpperCase();
         builder.append(lastTwoCharName);
 
-        SimpleDateFormat formatter = new SimpleDateFormat("ddMM");
+        SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");
         String formattedString = formatter.format(pilot.getTanggalLahir());
-        String dateMonth = formattedString.substring(0, 3);
-        Double year = Double.parseDouble(formattedString.substring(4, 7));
+        String dateMonth = formattedString.substring(0, 4);
+        Double year = Double.parseDouble(formattedString.substring(4, 8));
         Integer yearID = (int) (Math.floor(year/10));
         builder.append(dateMonth);
-        builder.append(yearID);
+        builder.append(String.valueOf(yearID));
 
         String randomChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random random = new Random();
-        while (builder.length() <= 12) {
+        while (builder.length() < 13) {
             int i = random.nextInt((25 - 0) + 1) + 0;
             builder.append(randomChar.charAt(i));
         }
         return builder.toString();
-    }
-
-    
-    
+    } 
 }
