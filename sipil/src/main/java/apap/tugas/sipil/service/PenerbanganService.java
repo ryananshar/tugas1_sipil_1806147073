@@ -8,11 +8,11 @@ public interface PenerbanganService {
     //  Method untuk menambah objek
     void addPenerbangan(PenerbanganModel penerbangan);
 
-    //  Method untuk mendapatkan semua data yang telah tersimpan
+    //  Method untuk mendapatkan list data yang telah tersimpan
     List<PenerbanganModel> getPenerbanganList();
 
-    //  Method untuk mendapatkan list data berdasarkan id
-    PenerbanganModel getPilotByIdPenerbangan(Long idPenerbangan);
+    //  Method untuk mendapatkan data berdasarkan id
+    PenerbanganModel getPenerbanganByIdPenerbangan(Long idPenerbangan);
 
     // Method untuk update 
     PenerbanganModel updatePenerbangan(PenerbanganModel penerbangan);

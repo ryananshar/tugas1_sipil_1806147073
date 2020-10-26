@@ -9,16 +9,16 @@ public interface PilotService {
     //  Method untuk menambah objek
     void addPilot(PilotModel pilot);
 
-    //  Method untuk mendapatkan semua data yang telah tersimpan
+    //  Method untuk mendapatkan list data yang telah tersimpan
     List<PilotModel> getPilotList();
 
-    //  Method untuk mendapatkan list data berdasarkan id
+    //  Method untuk mendapatkan data berdasarkan id
     PilotModel getPilotByIdPilot(Long idpilot);
 
-    //  Method untuk mendapatkan list data berdasarkan NIP
+    //  Method untuk mendapatkan data berdasarkan NIP
     PilotModel getPilotBynomorNIP(String nomorNIP);
 
-    //  Method untuk mendapatkan list data berdasarkan NIK
+    //  Method untuk mendapatkan data berdasarkan NIK
     PilotModel getPilotBynomorNIK(String nomorNIK);
 
     // Method untuk update 

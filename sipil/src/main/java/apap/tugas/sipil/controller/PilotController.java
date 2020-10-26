@@ -17,8 +17,6 @@ import apap.tugas.sipil.service.AkademiService;
 import apap.tugas.sipil.service.MaskapaiService;
 import apap.tugas.sipil.service.PilotService;
 
-// import java.util.*;
-
 @Controller
 public class PilotController {
     @Qualifier("pilotServiceImpl")
@@ -41,6 +39,26 @@ public class PilotController {
         List<PilotModel> listPilot = pilotService.getPilotList();
         model.addAttribute("listPilot", listPilot);
         return "list-pilot";
+    }
+
+    @GetMapping({"/pilot/{nomorNIP}", "/pilot/no-nip"})
+    public String viewDetailPilot(
+        @PathVariable(value = "nomorNIP", required = false) String nomorNIP,
+        Model model
+    ) {
+        try {
+            PilotModel pilot = pilotService.getPilotBynomorNIP(nomorNIP);
+            List<PilotPenerbanganModel> listPenerbangan = pilot.getListPilotPenerbangan(); 
+            model.addAttribute("pilot", pilot);             
+            model.addAttribute("listPenerbangan", listPenerbangan);
+
+            return "detail-pilot";
+        } catch (NoSuchElementException e) {
+            String message = "Proses pencarian tidak dilakukan karena NIP pilot tidak ada.";
+            model.addAttribute("message", message);
+            
+            return "detail-pilot";
+        }                
     }
 
     @GetMapping("/pilot/tambah")
@@ -66,12 +84,12 @@ public class PilotController {
         return "add-pilot";
     }
 
-    @GetMapping("/pilot/ubah/{nomorNIK}")
+    @GetMapping("/pilot/ubah/{nomorNIP}")
     private String changePilotPage(
-        @PathVariable String nomorNIK,
+        @PathVariable String nomorNIP,
         Model model
     ) {
-        PilotModel pilot = pilotService.getPilotBynomorNIK(nomorNIK);
+        PilotModel pilot = pilotService.getPilotBynomorNIP(nomorNIP);
         List<AkademiModel> listAkademi = akademiService.getAkademiList();
         List<MaskapaiModel> listMaskapai = maskapaiService.getMaskapaiList();
 
@@ -91,29 +109,6 @@ public class PilotController {
         model.addAttribute("pilot", updatedPilot);
 
         return "update-pilot";
-    }
-
-    @GetMapping({"/pilot/{nomorNIP}", "/pilot/no-nip"})
-    public String viewDetailPilot(
-        @PathVariable(value = "nomorNIP", required = false) String nomorNIP,
-        Model model
-    ) {
-        try {
-            PilotModel pilot = pilotService.getPilotBynomorNIP(nomorNIP);
-            List<PilotPenerbanganModel> listPenerbangan = pilot.getListPilotPenerbangan(); 
-            model.addAttribute("pilot", pilot);             
-            model.addAttribute("listPenerbangan", listPenerbangan);
-
-
-
-            return "detail-pilot";
-        } catch (NoSuchElementException e) {
-            String message = "Proses pencarian tidak dilakukan karena NIP pilot tidak ada.";
-            model.addAttribute("message", message);
-            
-            return "detail-pilot";
-        }
-                
     }
 
     @GetMapping("/pilot/hapus/{idPilot}")
