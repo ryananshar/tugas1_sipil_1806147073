@@ -46,7 +46,7 @@
                                             <td th:text="${penerbangan.kotaTujuan}"></td>
                                             <td>
                                                 <a th:href="@{/penerbangan/detail/} + ${penerbangan.idPenerbangan}" class="btn btn-success" >Lihat</a>
-                                                <a th:href="@{#} + ${penerbangan.idPenerbangan}" class="btn btn-outline-success">Ubah</a>
+                                                <a th:href="@{/penerbangan/ubah/} + ${penerbangan.idPenerbangan}" class="btn btn-outline-success">Ubah</a>
                                                 <a th:href="@{#} + ${penerbangan.idPenerbangan}" class="btn btn-danger">Hapus</a>
                                             </td>                                                
                                         </tr>
