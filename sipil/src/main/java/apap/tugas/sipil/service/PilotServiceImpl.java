@@ -37,7 +37,10 @@ public class PilotServiceImpl implements PilotService {
 
     @Override
     public PilotModel updatePilot(PilotModel pilot) {
-        return null;
+        String nip = nipGenerator(pilot);
+        pilot.setNomorNIP(nip);
+        pilotDb.save(pilot);
+        return pilot;
     }
 
     @Override

@@ -66,8 +66,35 @@ public class PilotController {
         return "add-pilot";
     }
 
+    @GetMapping("/pilot/ubah/{nomorNIK}")
+    private String changePilotPage(
+        @PathVariable String nomorNIK,
+        Model model
+    ) {
+        PilotModel pilot = pilotService.getPilotBynomorNIK(nomorNIK);
+        List<AkademiModel> listAkademi = akademiService.getAkademiList();
+        List<MaskapaiModel> listMaskapai = maskapaiService.getMaskapaiList();
+
+        model.addAttribute("pilot", pilot);
+        model.addAttribute("listAkademi", listAkademi); 
+        model.addAttribute("listMaskapai", listMaskapai);
+
+        return "form-update-pilot";
+    }
+
+    @PostMapping("/pilot/ubah")
+    public String changePilotSubmit(
+        @ModelAttribute PilotModel pilot,
+        Model model
+    ) {
+        PilotModel updatedPilot = pilotService.updatePilot(pilot);
+        model.addAttribute("pilot", updatedPilot);
+
+        return "update-pilot";
+    }
+
     @GetMapping({"/pilot/{nomorNIP}", "/pilot/no-nip"})
-    public String viewDetailResep(
+    public String viewDetailPilot(
         @PathVariable(value = "nomorNIP", required = false) String nomorNIP,
         Model model
     ) {
@@ -77,7 +104,7 @@ public class PilotController {
             model.addAttribute("pilot", pilot);             
             model.addAttribute("listPenerbangan", listPenerbangan);
 
-            
+
 
             return "detail-pilot";
         } catch (NoSuchElementException e) {

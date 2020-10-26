@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Update Pilot</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/general.css}"/>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <br>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header" id="text-center">
+                        <h4>Ubah Data Pilot</h4>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/pilot/ubah}" th:object="${pilot}" method="POST">
+                            <input type="hidden" th:field="*{idPilot}"/>
+                            <div class="form-group">
+                                <label for="nama_pilot">Nama Pilot:</label>
+                                <input th:field="*{namaPilot}" type="text" class="form-control" 
+                                    placeholder="Masukan nama pilot" th:value="*{namaPilot}"
+                                    id="nama_pilot" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="no_nik">Nomor NIK:</label>
+                                <input th:field="*{nomorNIK}" type="text" class="form-control" 
+                                    placeholder="Masukan nomor nik" th:value="*{nomorNIK}"
+                                    id="no_nik" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tempat_lahir">Tempat Lahir:</label>
+                                <input th:field="*{tempatLahir}" type="text" class="form-control" 
+                                    placeholder="Masukan tempat lahir" th:value="*{tempatLahir}"
+                                    id="tempat_lahir" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tanggal_lahir">Tanggal Lahir:</label>
+                                <input th:field="*{tanggalLahir}" type="date" class="form-control" 
+                                    placeholder="Masukan tanggal lahir" th:value="*{tanggalLahir}"
+                                    id="tanggal_lahir" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="jenis_kelamin">Jenis Kelamin:</label>
+                                <select th:field="*{jenisKelamin}" class="form-control" id="jenis_kelamin" required>
+                                    <option value="1" th:selected="${pilot.jenisKelamin == 1}">Laki-laki</option>
+                                    <option value="2" th:selected="${pilot.jenisKelamin == 2}">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="no_akademi">Sekolah:</label>
+                                <select th:field="*{akademiModel}" class="form-control" id="no_akademi" required>
+                                    <option th:each="akademi, iterationStatus: ${listAkademi}"
+                                    th:text="${akademi.namaAkademi}" 
+                                    th:selected="${pilot.akademiModel == akademi}"
+                                    th:value="${akademi.idAkademi}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="no_maskapai">Maskapai:</label>
+                                <select th:field="*{maskapaiModel}" class="form-control" id="no_maskapai" required>
+                                    <option th:each="maskapai, iterationStatus : ${listMaskapai}" 
+                                    th:text="${maskapai.namaMaskapai}" 
+                                    th:selected="${pilot.maskapaiModel == maskapai}"
+                                    th:value="${maskapai.idMaskapai}"></option>
+                                </select>
+                            </div>
+                            <br><br>
+                            <div class="row justify-content-end">
+                                
+                                <a class="btn btn-outline-primary" type="button" th:href="@{/}">Batal</a>
+                                <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
