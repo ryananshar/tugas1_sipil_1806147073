@@ -38,8 +38,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="penerbangan : ${listPenerbangan}">
-                                            <td th:text="${penerbangan.idPenerbangan}"></td>
+                                        <tr th:each="penerbangan, iterationStatus : ${listPenerbangan}">
+                                            <td th:text="${iterationStatus.count}"></td>
                                             <td th:text="${penerbangan.kodePenerbangan}"></td>
                                             <td th:text="${penerbangan.waktuPenerbangan}"></td>
                                             <td th:text="${penerbangan.kotaAsal}"></td>

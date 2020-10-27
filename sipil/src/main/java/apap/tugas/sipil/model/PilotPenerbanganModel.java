@@ -1,12 +1,14 @@
 package apap.tugas.sipil.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+// import org.hibernate.annotations.OnDelete;
+// import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+// import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,27 +16,27 @@ import java.util.Date;
 @Table(name = "pilot_penerbangan")
 public class PilotPenerbanganModel implements Serializable {
     @Id
-    @Size(max = 20)
+    @Max(20)
 	@Column(name = "id_pilot_penerbangan")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPilotPenerbangan;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @MapsId("idPilot")
+    // @MapsId("idPilot")
     @JoinColumn(name = "no_pilot", referencedColumnName = "id_pilot", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private PilotModel pilotModel;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @MapsId("idPenerbangan")
+    // @MapsId("idPenerbangan")
     @JoinColumn(name = "no_penerbangan", referencedColumnName = "id_penerbangan", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private PenerbanganModel penerbanganModel;
 
     @NotNull
-	@Column(name = "tanggal_penugasan", nullable = false)
+    @Temporal(TemporalType.DATE)
+    @Column(name = "tanggal_penugasan", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date tanggalPenugasan;
 
 

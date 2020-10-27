@@ -122,13 +122,12 @@
                                             <tbody>
                                                 <tr th:each="penerbangan, iterationStatus : ${listPenerbangan}">
                                                     <td th:text="${iterationStatus.count}"></td>
-                                                    <td th:text="${penerbangan.penerbanganModel.idPenerbangan}"></td>
                                                     <td th:text="${penerbangan.penerbanganModel.kodePenerbangan}"></td>
                                                     <td th:text="${penerbangan.penerbanganModel.waktuPenerbangan}"></td>
-                                                    <td th:text="${penerbangan.penerbanganModel.kodeAsal}"></td>
-                                                    <td th:text="${penerbangan.penerbanganModel.kode_tujuan}"></td>
+                                                    <td th:text="${penerbangan.penerbanganModel.kotaAsal}"></td>
+                                                    <td th:text="${penerbangan.penerbanganModel.kotaTujuan}"></td>
                                                     <td>
-                                                        <a th:href="@{#} + ${penerbangan.idPenerbangan}" class="btn btn-success">Lihat</a>
+                                                        <a th:href="@{/penerbangan/detail/} + ${penerbangan.penerbanganModel.idPenerbangan}" class="btn btn-success">Lihat</a>
                                                     </td>
                                                 </tr>
                                             </tbody>

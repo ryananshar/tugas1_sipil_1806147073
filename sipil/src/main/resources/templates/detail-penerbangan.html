@@ -82,6 +82,24 @@
             <section>
                 <div class="row justify-content-center">
                     <div class="col-9">
+                        <form th:action="@{/penerbangan/}+${idPenerbangan}+@{/pilot/tambah}" th:object="${pilotPenerbangan}" method="POST">
+                            <div class="col-4">
+                                <input type="hidden" name="penerbanganModel"  th:value="${penerbangan.idPenerbangan}" id="no_penerbangan">
+                                <label for="no_pilot">Pilih Pilot:</label>
+                                <select name="pilotModel" class="form-control" id="no_pilot" required>
+                                    <option>-- PILIH NAMA PILOT --</option>
+                                    <option th:each="pilot : ${listPilot}" th:text="${pilot.namaPilot}" th:value="${pilot.idPilot}"></option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+                            </div>
+                        </form>
+                            
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-9">
                         <div class="card">
                             <div class="card-header" id="text-center">
                                 <h4>Daftar Pilot</h4>
@@ -101,14 +119,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr th:each="pilot, iterationStatus : ${listPilot}">
+                                                <tr th:each="pilotPenerbangan, iterationStatus : ${listPilotPenerbangan}">
                                                     <td th:text="${iterationStatus.count}"></td>
-                                                    <td th:text="${pilot.pilotModel.idPilot}"></td>
-                                                    <td th:text="${pilot.pilotModel.namaPilot}"></td>
-                                                    <td th:text="${pilot.pilotModel.nomorNIP}"></td>
-                                                    <td th:text="${pilot.pilotModel.tanggalLahir}"></td>
-                                                    <td th:text="${pilot.pilotModel.jenisKelamin}"></td>
-                                                    <td th:text="${pilot.tanggalPenugasan}"></td>
+                                                    <td th:text="${pilotPenerbangan.pilotModel.namaPilot}"></td>
+                                                    <td th:text="${pilotPenerbangan.pilotModel.nomorNIP}"></td>
+                                                    <td th:text="${pilotPenerbangan.pilotModel.tanggalLahir}"></td>
+                                                    <td th:if="${pilotPenerbangan.pilotModel.jenisKelamin} == '1'">Laki-Laki</td>
+                                                    <td th:if="${pilotPenerbangan.pilotModel.jenisKelamin} == '2'">Perempuan</td>
+                                                    <td th:text="${pilotPenerbangan.tanggalPenugasan}"></td>
                                                 </tr>
                                             </tbody>
                                         </table>

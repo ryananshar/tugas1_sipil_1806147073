@@ -40,7 +40,7 @@
                                     </thead>
                                     <tbody>
                                         <tr th:each="pilot, iterationStatus : ${listPilot}">
-                                            <td th:text="${pilot.idPilot}"></td>
+                                            <td th:text="${iterationStatus.count}"></td>
                                             <td th:text="${pilot.namaPilot}"></td>
                                             <td th:text="${pilot.nomorNIP}"></td>
                                             <td th:text="${pilot.nomorNIK}"></td>
