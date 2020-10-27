@@ -10,4 +10,7 @@ public interface MaskapaiService {
 
     //  Method untuk mendapatkan list data berdasarkan id
     MaskapaiModel getMaskapaiById(Long idMaskapai);
+
+    //  Method untuk mendapatkan list data berdasarkan kode
+    MaskapaiModel getMaskapaiByKode(String kodeMaskapai);
 }

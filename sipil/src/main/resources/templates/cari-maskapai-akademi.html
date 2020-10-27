@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cari</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/general.css}"/>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <br><br><br>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <form th:action="@{/cari/pilot}" th:object="${pilotPenerbangan}" method="GET">
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Pilih Kode Maskapai:</p>
+                            <select name="kodeMaskapai" class="form-control">
+                                <option value="">Kode Maskapai</option>
+                                <option th:each="maskapai : ${listMaskapai}" th:text="${maskapai.kodeMaskapai}" 
+                                    th:selected="${maskapaiModel == maskapai}"
+                                    th:value="${maskapai.kodeMaskapai}"></option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <p>Pilih Nama Sekolah:</p>
+                            <select name="idAkademi" class="form-control">
+                                <option value="">Nama Sekolah</option>
+                                <option th:each="akademi : ${listAkademi}" th:text="${akademi.namaAkademi}" 
+                                    th:selected="${akademiModel == akademi}"        
+                                    th:value="${akademi.idAkademi}"></option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <p></p><br>
+                            <button class="btn btn-success"  type="submit" value="Submit">Submit</button>
+                        </div>
+                    </div>                            
+                </form>
+            </div>
+        </div>
+        <br><br><br>
+        <div th:if="${listPilot} != null" class="row justify-content-center">
+            <div class="col-9">
+                <div class="card">
+                    <div class="card-header" id="text-center">
+                        <h4>Daftar Pilot</h4>
+                    </div>
+                    <div class="card-body">                
+                        <div class="form-row">
+                            <div class="col">
+                                <table class="table" id="center">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>NIP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="pilot, iterationStatus : ${listPilot}">
+                                            <td th:text="${iterationStatus.count}"></td>
+                                            <td th:text="${pilot.namaPilot}"></td>
+                                            <td th:text="${pilot.nomorNIP}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

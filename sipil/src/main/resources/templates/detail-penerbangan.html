@@ -70,8 +70,8 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-end">
-                                    <a th:href="@{/penerbangan/ubah/} + ${penerbangan.idPenerbangan}" class="btn btn-success">Ubah Pilot</a>
-                                    <a th:href="@{/penerbangan/hapus/} + ${penerbangan.idPenerbangan}" class="btn btn-danger">Hapus Pilot</a>
+                                    <a th:href="@{/penerbangan/ubah/} + ${penerbangan.idPenerbangan}" class="btn btn-success">Ubah</a>
+                                    <a th:href="@{/penerbangan/hapus/} + ${penerbangan.idPenerbangan}" class="btn btn-danger">Hapus</a>
                                 </div>                            
                             </div>
                         </div>
@@ -83,19 +83,22 @@
                 <div class="row justify-content-center">
                     <div class="col-9">
                         <form th:action="@{/penerbangan/}+${idPenerbangan}+@{/pilot/tambah}" th:object="${pilotPenerbangan}" method="POST">
-                            <div class="col-4">
-                                <input type="hidden" name="penerbanganModel"  th:value="${penerbangan.idPenerbangan}" id="no_penerbangan">
-                                <label for="no_pilot">Pilih Pilot:</label>
-                                <select name="pilotModel" class="form-control" id="no_pilot" required>
-                                    <option>-- PILIH NAMA PILOT --</option>
-                                    <option th:each="pilot : ${listPilot}" th:text="${pilot.namaPilot}" th:value="${pilot.idPilot}"></option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <button class="btn btn-success" type="submit" value="Submit">Submit</button>
-                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <input type="hidden" name="penerbanganModel"  th:value="${penerbangan.idPenerbangan}" id="no_penerbangan">
+                                    <p>Pilih Pilot:</p>
+                                    <select name="pilotModel" class="form-control" id="no_pilot" required>
+                                        <option selected value="">-- PILIH NAMA PILOT --</option>
+                                        <option th:each="pilot : ${listPilot}" th:text="${pilot.namaPilot}" th:value="${pilot.idPilot}"></option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <p></p><br>
+                                    <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+                                </div>
+                            </div>                            
                         </form>
-                            
+                        <br>
                     </div>
                 </div>
                 <div class="row justify-content-center">

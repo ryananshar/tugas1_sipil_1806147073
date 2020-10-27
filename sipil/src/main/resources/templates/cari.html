@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Cari</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     <link rel="stylesheet" th:href="@{/css/general.css}"/>
@@ -10,25 +10,19 @@
 
 <body>
     <nav th:replace="fragments/fragment :: navbar"></nav>
-    <div class="jumbotron jumbotron-fluid" id="center">
-        <div class="container">
-            <h1>Selamat datang di SIPILOT!</h1>
-            <p>Sistem informasi untuk manajemen para pilot</p> 
-        </div>
-    </div>
     <div class="container-fluid">
         <div class="row justify-content-center" id="center">
-            <div class="col-md-4">
-                <h2> Daftar Fitur</h2>
+            <div class="col-md-10">
+                <h2> Daftar Fitur Pencarian Pilot</h2>
                 <br>
-                <a th:href="@{/pilot}" class="btn btn-success">
-                    Pilot
+                <a th:href="@{/cari/pilot}" class="btn btn-success">
+                    Maskapai/Akademi
                 </a>
-                <a th:href="@{/penerbangan}" class="btn btn-success">
-                    Penerbangan
+                <a th:href="@{#}" class="btn btn-success">
+                    Penerbangan Terbanyak
                 </a>
-                <a th:href="@{/cari}" class="btn btn-success">
-                    Cari
+                <a th:href="@{#}" class="btn btn-success">
+                    Penerbangan Bulan Ini
                 </a>
             </div>
         </div>

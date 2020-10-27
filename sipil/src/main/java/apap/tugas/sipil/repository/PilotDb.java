@@ -1,5 +1,7 @@
 package apap.tugas.sipil.repository;
 
+import apap.tugas.sipil.model.AkademiModel;
+import apap.tugas.sipil.model.MaskapaiModel;
 import apap.tugas.sipil.model.PilotModel;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,6 +19,12 @@ public interface PilotDb extends JpaRepository<PilotModel, Long>{
     Optional<PilotModel> findByNomorNIK(String nomorNIK);
     
     List<PilotModel> findAllByOrderByIdPilotAsc();
+    
+    List<PilotModel> findByMaskapaiModelAndAkademiModel(MaskapaiModel maskapaiModel, AkademiModel akademiModel);
+
+    List<PilotModel> findByMaskapaiModel(MaskapaiModel maskapaiModel);
+    
+    List<PilotModel> findByAkademiModel(AkademiModel akademiModel);
 
 	void deleteByIdPilot(Long idpilot);
 }

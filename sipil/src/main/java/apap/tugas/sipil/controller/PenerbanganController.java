@@ -1,5 +1,7 @@
 package apap.tugas.sipil.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -29,47 +31,44 @@ public class PenerbanganController {
     @Autowired
     PilotPenerbanganService pilotPenerbanganService;
 
-    @RequestMapping("/penerbangan")
+    @GetMapping("/penerbangan")
     public String listPenerbangan(Model model) {
         List<PenerbanganModel> listPenerbangan = penerbanganService.getPenerbanganList();
         model.addAttribute("listPenerbangan", listPenerbangan);
         return "list-penerbangan";
     }
 
-    @GetMapping({"/penerbangan/detail/{idPenerbangan}", "/penerbangan/detail/"})
-    public String viewDetailPilot(
-        @PathVariable(value = "idPenerbangan", required = false) Long idPenerbangan,
-        Model model
-    ) {
+    @GetMapping({ "/penerbangan/detail/{idPenerbangan}", "/penerbangan/detail/" })
+    public String viewDetailPilot(@PathVariable(value = "idPenerbangan", required = false) Long idPenerbangan,
+            Model model) {
         try {
             PilotPenerbanganModel pilotPenerbangan = new PilotPenerbanganModel();
 
             PenerbanganModel penerbangan = penerbanganService.getPenerbanganByIdPenerbangan(idPenerbangan);
             List<PilotModel> listPilot = pilotService.getPilotList();
-            List<PilotPenerbanganModel> listPilotPenerbangan = penerbangan.getListPilotPenerbangan(); 
-            
+            List<PilotPenerbanganModel> listPilotPenerbangan = penerbangan.getListPilotPenerbangan();
+
             model.addAttribute("pilotPenerbangan", pilotPenerbangan);
-            model.addAttribute("idPenerbangan", idPenerbangan); 
-            model.addAttribute("penerbangan", penerbangan);   
-            model.addAttribute("listPilot", listPilot);          
+            model.addAttribute("idPenerbangan", idPenerbangan);
+            model.addAttribute("penerbangan", penerbangan);
+            model.addAttribute("listPilot", listPilot);
             model.addAttribute("listPilotPenerbangan", listPilotPenerbangan);
 
             return "detail-penerbangan";
         } catch (NoSuchElementException e) {
             String message = "Proses pencarian tidak dilakukan karena Id penerbangan tidak ada.";
             model.addAttribute("message", message);
-            
+
             return "detail-penerbangan";
-        }                
+        }
     }
 
     @PostMapping("/penerbangan/{idPenerbangan}/pilot/tambah")
-    public String addPilotPenerbangan(
-        @PathVariable Long idPenerbangan,
-        @ModelAttribute PilotPenerbanganModel pilotPenerbangan,
-        Model model
-    ) {
-        Date date = new Date();
+    public String addPilotPenerbangan(@PathVariable Long idPenerbangan,
+            @ModelAttribute PilotPenerbanganModel pilotPenerbangan, @ModelAttribute PilotModel pilotmodel, Model model)
+            throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse(formatter.format(new Date()));
         pilotPenerbangan.setTanggalPenugasan(date);
         pilotPenerbanganService.addPilotPenerbangan(pilotPenerbangan); 
         PilotModel pilot = pilotPenerbangan.getPilotModel();

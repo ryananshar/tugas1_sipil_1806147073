@@ -30,11 +30,67 @@ public class PilotController {
     MaskapaiService maskapaiService;
 
     @GetMapping("/")
-    private String home() {
+    public String home() {
         return "home";
     }
 
-    @RequestMapping("/pilot")
+    @GetMapping("/cari")
+    public String cari() {
+        return "cari";
+    }
+
+    @RequestMapping("/cari/pilot")
+    public String cariPilotMaskapaiAkademi(
+        @RequestParam(value = "kodeMaskapai", required = false) String kodeMaskapai,
+        @RequestParam(value = "idAkademi", required = false) Long idAkademi,
+        Model model
+    ) {
+        List<AkademiModel> listAkademi = akademiService.getAkademiList();
+        List<MaskapaiModel> listMaskapai = maskapaiService.getMaskapaiList();
+        List<PilotModel> listPilot = null;
+
+        MaskapaiModel maskapaiModel = new MaskapaiModel();
+        AkademiModel akademiModel = new AkademiModel();
+
+        try {
+            maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
+            akademiModel = akademiService.getAkademiById(idAkademi);
+            listPilot = pilotService.getPilotListByMaskapaiAndAkademi(maskapaiModel, akademiModel);
+        } catch (Exception e) {
+            try {
+                maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
+                listPilot = pilotService.getPilotListByMaskapai(maskapaiModel);
+            } catch (Exception f) {
+                try {
+                    akademiModel = akademiService.getAkademiById(idAkademi);
+                    listPilot = pilotService.getPilotListByAkademi(akademiModel);
+                } catch (Exception g) {
+                }
+                
+            }
+        }
+        
+        // if (idAkademi != null && kodeMaskapai != null) {
+        //     maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
+        //     akademiModel = akademiService.getAkademiById(idAkademi);
+        //     listPilot = pilotService.getPilotListByMaskapaiAndAkademi(maskapaiModel, akademiModel);
+        // } else if (kodeMaskapai != null) {
+        //     maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
+        //     listPilot = pilotService.getPilotListByMaskapai(maskapaiModel);
+        // } else if (idAkademi != null) {
+        //     akademiModel = akademiService.getAkademiById(idAkademi);
+        //     listPilot = pilotService.getPilotListByAkademi(akademiModel);
+        // }
+        model.addAttribute("listAkademi", listAkademi); 
+        model.addAttribute("listMaskapai", listMaskapai); 
+        model.addAttribute("listPilot", listPilot);
+        model.addAttribute("akademiModel", akademiModel);
+        model.addAttribute("maskapaiModel", maskapaiModel);
+
+        return "cari-maskapai-akademi";
+    }
+
+    @GetMapping("/pilot")
     public String listPilot(Model model) {
         List<PilotModel> listPilot = pilotService.getPilotList();
         model.addAttribute("listPilot", listPilot);

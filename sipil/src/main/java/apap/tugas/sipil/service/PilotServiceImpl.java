@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import apap.tugas.sipil.model.AkademiModel;
+import apap.tugas.sipil.model.MaskapaiModel;
 import apap.tugas.sipil.model.PilotModel;
 import apap.tugas.sipil.repository.PilotDb;
 
@@ -90,5 +92,20 @@ public class PilotServiceImpl implements PilotService {
             builder.append(randomChar.charAt(i));
         }
         return builder.toString();
-    } 
+    }
+
+    @Override
+    public List<PilotModel> getPilotListByMaskapai(MaskapaiModel maskapaiModel) {
+        return pilotDb.findByMaskapaiModel(maskapaiModel);
+    }
+
+    @Override
+    public List<PilotModel> getPilotListByAkademi(AkademiModel akademiModel){
+        return pilotDb.findByAkademiModel(akademiModel);
+    }
+
+    @Override
+    public List<PilotModel> getPilotListByMaskapaiAndAkademi(MaskapaiModel maskapaiModel, AkademiModel akademiModel) {
+        return pilotDb.findByMaskapaiModelAndAkademiModel(maskapaiModel, akademiModel);
+    }
 }

@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity 
@@ -39,7 +39,7 @@ public class PenerbanganModel implements Serializable {
     // @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "waktu", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDateTime waktuPenerbangan;
+    private Date waktuPenerbangan;
     
     @OneToMany(mappedBy = "penerbanganModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PilotPenerbanganModel> listPilotPenerbangan;
@@ -76,11 +76,11 @@ public class PenerbanganModel implements Serializable {
         this.kotaTujuan = kotaTujuan;
     }
 
-    public LocalDateTime getWaktuPenerbangan() {
+    public @NotNull Date getWaktuPenerbangan() {
         return this.waktuPenerbangan;
     }
 
-    public void setWaktuPenerbangan(LocalDateTime waktuPenerbangan) {
+    public void setWaktuPenerbangan(Date waktuPenerbangan) {
         this.waktuPenerbangan = waktuPenerbangan;
     }
 
