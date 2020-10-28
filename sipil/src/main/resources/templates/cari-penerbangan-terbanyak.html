@@ -13,10 +13,10 @@
     <div class="container-fluid">
         <br><br><br>
         <div class="row justify-content-center">
-            <div class="col-6">
+            <div class="col-4">
                 <form th:action="@{/cari/pilot/penerbangan-terbanyak}" th:object="${pilotPenerbangan}" method="GET">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-7">
                             <p>Pilih Kode Maskapai:</p>
                             <select name="kodeMaskapai" class="form-control">
                                 <option value="">Kode Maskapai</option>
@@ -25,7 +25,7 @@
                                     th:value="${maskapai.kodeMaskapai}"></option>
                             </select>
                         </div>
-                        <div class="col-2">
+                        <div class="col">
                             <p></p><br>
                             <button class="btn btn-success"  type="submit" value="Submit">Submit</button>
                         </div>
