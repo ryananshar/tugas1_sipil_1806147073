@@ -1,5 +1,7 @@
 package apap.tugas.sipil.controller;
 
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -37,69 +39,6 @@ public class PilotController {
     @GetMapping("/cari")
     public String cari() {
         return "cari";
-    }
-
-    @RequestMapping("/cari/pilot")
-    public String cariPilotMaskapaiAkademi(
-        @RequestParam(value = "kodeMaskapai", required = false) String kodeMaskapai,
-        @RequestParam(value = "idAkademi", required = false) Long idAkademi,
-        Model model
-    ) {
-        List<AkademiModel> listAkademi = akademiService.getAkademiList();
-        List<MaskapaiModel> listMaskapai = maskapaiService.getMaskapaiList();
-        List<PilotModel> listPilot = null;
-
-        MaskapaiModel maskapaiModel = new MaskapaiModel();
-        AkademiModel akademiModel = new AkademiModel();
-
-        try {
-            maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
-            akademiModel = akademiService.getAkademiById(idAkademi);
-            listPilot = pilotService.getPilotListByMaskapaiAndAkademi(maskapaiModel, akademiModel);
-        } catch (Exception e) {
-            try {
-                maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
-                listPilot = pilotService.getPilotListByMaskapai(maskapaiModel);
-            } catch (Exception f) {
-                try {
-                    akademiModel = akademiService.getAkademiById(idAkademi);
-                    listPilot = pilotService.getPilotListByAkademi(akademiModel);
-                } catch (Exception g) {
-                }
-                
-            }
-        }
-        model.addAttribute("listAkademi", listAkademi); 
-        model.addAttribute("listMaskapai", listMaskapai); 
-        model.addAttribute("listPilot", listPilot);
-        model.addAttribute("akademiModel", akademiModel);
-        model.addAttribute("maskapaiModel", maskapaiModel);
-
-        return "cari-maskapai-akademi";
-    }
-
-    @RequestMapping("/cari/pilot/penerbangan-terbanyak")
-    public String cariPilotPenerbanganTerbanyak(
-        @RequestParam(value = "kodeMaskapai", required = false) String kodeMaskapai,
-        Model model
-    ) {
-        List<MaskapaiModel> listMaskapai = maskapaiService.getMaskapaiList();
-        List<PilotModel> listPilot = null;
-
-        MaskapaiModel maskapaiModel = new MaskapaiModel();
-
-        try {
-            maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
-            // listPilot = pilotService.getPilotListByMaskapai(maskapaiModel);
-            listPilot = pilotService.getTop3Pilot(maskapaiModel);
-            
-        } catch (Exception e) {   
-        }
-        model.addAttribute("listMaskapai", listMaskapai); 
-        model.addAttribute("listPilot", listPilot);
-        model.addAttribute("maskapaiModel", maskapaiModel);
-
-        return "cari-penerbangan-terbanyak";
     }
 
     @GetMapping("/pilot")
@@ -187,5 +126,76 @@ public class PilotController {
         model.addAttribute("idPilot", idPilot);
 
         return "delete-pilot";
+    }
+
+    @RequestMapping("/cari/pilot")
+    public String cariPilotMaskapaiAkademi(
+        @RequestParam(value = "kodeMaskapai", required = false) String kodeMaskapai,
+        @RequestParam(value = "idAkademi", required = false) Long idAkademi,
+        Model model
+    ) {
+        List<AkademiModel> listAkademi = akademiService.getAkademiList();
+        List<MaskapaiModel> listMaskapai = maskapaiService.getMaskapaiList();
+        List<PilotModel> listPilot = null;
+
+        MaskapaiModel maskapaiModel = new MaskapaiModel();
+        AkademiModel akademiModel = new AkademiModel();
+
+        try {
+            maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
+            akademiModel = akademiService.getAkademiById(idAkademi);
+            listPilot = pilotService.getPilotListByMaskapaiAndAkademi(maskapaiModel, akademiModel);
+        } catch (Exception e) {
+            try {
+                maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
+                listPilot = pilotService.getPilotListByMaskapai(maskapaiModel);
+            } catch (Exception f) {
+                try {
+                    akademiModel = akademiService.getAkademiById(idAkademi);
+                    listPilot = pilotService.getPilotListByAkademi(akademiModel);
+                } catch (Exception g) {
+                }
+                
+            }
+        }
+        model.addAttribute("listAkademi", listAkademi); 
+        model.addAttribute("listMaskapai", listMaskapai); 
+        model.addAttribute("listPilot", listPilot);
+        model.addAttribute("akademiModel", akademiModel);
+        model.addAttribute("maskapaiModel", maskapaiModel);
+
+        return "cari-maskapai-akademi";
+    }
+
+    @RequestMapping("/cari/pilot/penerbangan-terbanyak")
+    public String cariPilotPenerbanganTerbanyak(
+        @RequestParam(value = "kodeMaskapai", required = false) String kodeMaskapai,
+        Model model
+    ) {
+        List<MaskapaiModel> listMaskapai = maskapaiService.getMaskapaiList();
+        List<PilotModel> listPilot = null;
+
+        MaskapaiModel maskapaiModel = new MaskapaiModel();
+
+        try {
+            maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
+            listPilot = pilotService.getTop3Pilot(maskapaiModel);
+            
+        } catch (Exception e) {   
+        }
+        model.addAttribute("listMaskapai", listMaskapai); 
+        model.addAttribute("listPilot", listPilot);
+        model.addAttribute("maskapaiModel", maskapaiModel);
+
+        return "cari-penerbangan-terbanyak";
+    }
+
+    @GetMapping("/cari/pilot/bulan-ini")
+    public String bonus(Model model) {  
+        Date now = Date.from(ZonedDateTime.now().toInstant());
+        Date minusNow = Date.from(ZonedDateTime.now().minusMonths(1).toInstant());
+        List<PilotModel> listPilot = pilotService.getPilotThisMonth(minusNow, now);
+        model.addAttribute("listPilot", listPilot);
+        return "list-pilot-bulan-ini";
     }
 }

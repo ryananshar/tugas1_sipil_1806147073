@@ -1,5 +1,6 @@
 package apap.tugas.sipil.service;
 
+import java.util.Date;
 import java.util.List;
 
 import apap.tugas.sipil.model.AkademiModel;
@@ -40,4 +41,7 @@ public interface PilotService {
 
     //  Method untuk mendapatkan list data yang telah tersimpan
     List<PilotModel> getTop3Pilot(MaskapaiModel maskapaiModel);
+
+    //  Method untuk mendapatkan list data yang telah tersimpan
+    List<PilotModel> getPilotThisMonth(Date minusNow, Date now);
 }

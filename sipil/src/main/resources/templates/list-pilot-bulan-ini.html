@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Pilot Bulan Ini</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/general.css}"/>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <div class="card">
+                    <div class="card-header" id="center">
+                        <h3>Daftar Pilot Pada Penerbangan Bulan Ini</h3>
+                    </div>
+                    <div class="card-body">                
+                        <div class="form-row">
+                            <div class="col">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>NIP</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Jenis Kelamin</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="pilot, iterationStatus : ${listPilot}">
+                                            <td th:text="${iterationStatus.count}"></td>
+                                            <td th:text="${pilot.namaPilot}"></td>
+                                            <td th:text="${pilot.nomorNIP}"></td>
+                                            <td th:text="${pilot.tanggalLahir}"></td>
+                                            <td th:if="${pilot.jenisKelamin == 1}">Laki-laki</td>
+                                            <td th:if="${pilot.jenisKelamin == 2}">Perempuan</td>                                              
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

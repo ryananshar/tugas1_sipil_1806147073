@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,18 @@ public interface PilotDb extends JpaRepository<PilotModel, Long>{
         "GROUP BY p.idPilot"
         )
     List<PilotModel> findTop3ByIdPilot(@Param("maskapai") MaskapaiModel maskapai);
+
+    @Query(
+        value = 
+        "SELECT p " +
+        "FROM PilotModel p " +
+        "LEFT JOIN PilotPenerbanganModel q " +
+        "ON q.pilotModel.idPilot = p.idPilot " +
+        "LEFT JOIN PenerbanganModel r " +
+        "ON q.penerbanganModel.kodePenerbangan = r.kodePenerbangan " +
+        "WHERE r.waktuPenerbangan BETWEEN (:lastMonth) AND (:thisMonth)"
+        )
+	List<PilotModel> findPilotByThisMonth(@Param("lastMonth") Date lastMonth, @Param("thisMonth") Date thisMonth);
 
 }
 

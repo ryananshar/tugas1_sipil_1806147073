@@ -1,6 +1,7 @@
 package apap.tugas.sipil.service;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -112,5 +113,10 @@ public class PilotServiceImpl implements PilotService {
     @Override
     public List<PilotModel> getTop3Pilot(MaskapaiModel maskapaiModel) {
         return pilotDb.findTop3ByIdPilot(maskapaiModel);
+    }
+
+    @Override
+    public List<PilotModel> getPilotThisMonth(Date lastMonth, Date thisMonth) {
+        return pilotDb.findPilotByThisMonth(lastMonth, thisMonth);
     }
 }

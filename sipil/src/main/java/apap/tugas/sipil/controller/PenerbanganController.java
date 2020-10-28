@@ -66,8 +66,6 @@ public class PenerbanganController {
     public String addPilotPenerbangan(@PathVariable Long idPenerbangan,
             @ModelAttribute PilotPenerbanganModel pilotPenerbangan, @ModelAttribute PilotModel pilotmodel, Model model)
             throws ParseException {
-        // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        // Date date = formatter.parse(formatter.format(new Date()));
         Date date = new Date();
         pilotPenerbangan.setTanggalPenugasan(date);
         pilotPenerbanganService.addPilotPenerbangan(pilotPenerbangan); 
