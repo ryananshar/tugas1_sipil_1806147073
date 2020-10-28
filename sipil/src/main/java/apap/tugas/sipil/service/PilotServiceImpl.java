@@ -108,4 +108,9 @@ public class PilotServiceImpl implements PilotService {
     public List<PilotModel> getPilotListByMaskapaiAndAkademi(MaskapaiModel maskapaiModel, AkademiModel akademiModel) {
         return pilotDb.findByMaskapaiModelAndAkademiModel(maskapaiModel, akademiModel);
     }
+
+    @Override
+    public List<PilotModel> getTop3Pilot(MaskapaiModel maskapaiModel) {
+        return pilotDb.findTop3ByIdPilot(maskapaiModel);
+    }
 }

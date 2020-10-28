@@ -3,8 +3,11 @@ package apap.tugas.sipil.repository;
 import apap.tugas.sipil.model.AkademiModel;
 import apap.tugas.sipil.model.MaskapaiModel;
 import apap.tugas.sipil.model.PilotModel;
+// import apap.tugas.sipil.model.PilotPenerbanganModel;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,6 +29,17 @@ public interface PilotDb extends JpaRepository<PilotModel, Long>{
     
     List<PilotModel> findByAkademiModel(AkademiModel akademiModel);
 
-	void deleteByIdPilot(Long idpilot);
+    void deleteByIdPilot(Long idpilot);
+    
+    @Query(
+        value = 
+        "SELECT p, COUNT(p.idPilot) as x " +
+        "FROM PilotModel p, PilotPenerbanganModel q " +
+        "WHERE q.pilotModel.idPilot = p.idPilot " +
+        "AND p.maskapaiModel = (:maskapai) " +
+        "GROUP BY p.idPilot"
+        )
+    List<PilotModel> findTop3ByIdPilot(@Param("maskapai") MaskapaiModel maskapai);
+
 }
 

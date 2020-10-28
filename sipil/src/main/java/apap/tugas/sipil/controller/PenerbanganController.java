@@ -1,7 +1,6 @@
 package apap.tugas.sipil.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -67,8 +66,9 @@ public class PenerbanganController {
     public String addPilotPenerbangan(@PathVariable Long idPenerbangan,
             @ModelAttribute PilotPenerbanganModel pilotPenerbangan, @ModelAttribute PilotModel pilotmodel, Model model)
             throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = formatter.parse(formatter.format(new Date()));
+        // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        // Date date = formatter.parse(formatter.format(new Date()));
+        Date date = new Date();
         pilotPenerbangan.setTanggalPenugasan(date);
         pilotPenerbanganService.addPilotPenerbangan(pilotPenerbangan); 
         PilotModel pilot = pilotPenerbangan.getPilotModel();

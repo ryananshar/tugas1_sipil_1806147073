@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cari</title>
+    <title>Cari Pilot</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     <link rel="stylesheet" th:href="@{/css/general.css}"/>
@@ -16,10 +16,10 @@
                 <h2> Daftar Fitur Pencarian Pilot</h2>
                 <br>
                 <a th:href="@{/cari/pilot}" class="btn btn-success">
-                    Maskapai/Akademi
+                    Cari Pilot berdasarkan Maskapai/Akademi
                 </a>
-                <a th:href="@{#}" class="btn btn-success">
-                    Penerbangan Terbanyak
+                <a th:href="@{/cari/pilot/penerbangan-terbanyak}" class="btn btn-success">
+                    Cari Pilot dengan Penerbangan Terbanyak
                 </a>
                 <a th:href="@{#}" class="btn btn-success">
                     Penerbangan Bulan Ini

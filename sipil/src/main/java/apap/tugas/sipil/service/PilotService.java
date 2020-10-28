@@ -38,4 +38,6 @@ public interface PilotService {
     //  Method untuk mendapatkan list data yang telah tersimpan
     List<PilotModel> getPilotListByMaskapaiAndAkademi(MaskapaiModel maskapaiModel, AkademiModel akademiModel);
 
+    //  Method untuk mendapatkan list data yang telah tersimpan
+    List<PilotModel> getTop3Pilot(MaskapaiModel maskapaiModel);
 }

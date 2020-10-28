@@ -14,7 +14,7 @@
         <br><br><br>
         <div class="row justify-content-center">
             <div class="col-6">
-                <form th:action="@{/cari/pilot}" method="GET">
+                <form th:action="@{/cari/pilot/penerbangan-terbanyak}" th:object="${pilotPenerbangan}" method="GET">
                     <div class="row">
                         <div class="col-4">
                             <p>Pilih Kode Maskapai:</p>
@@ -23,15 +23,6 @@
                                 <option th:each="maskapai : ${listMaskapai}" th:text="${maskapai.kodeMaskapai}" 
                                     th:selected="${maskapaiModel == maskapai}"
                                     th:value="${maskapai.kodeMaskapai}"></option>
-                            </select>
-                        </div>
-                        <div class="col-4">
-                            <p>Pilih Nama Sekolah:</p>
-                            <select name="idAkademi" class="form-control">
-                                <option value="">Nama Sekolah</option>
-                                <option th:each="akademi : ${listAkademi}" th:text="${akademi.namaAkademi}" 
-                                    th:selected="${akademiModel == akademi}"        
-                                    th:value="${akademi.idAkademi}"></option>
                             </select>
                         </div>
                         <div class="col-2">
@@ -55,16 +46,18 @@
                                 <table class="table" id="center">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
                                             <th>Nama</th>
                                             <th>NIP</th>
+                                            <th>Jumlah Penerbangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="pilot, iterationStatus : ${listPilot}">
-                                            <td th:text="${iterationStatus.count}"></td>
+                                        <tr th:each="pilot, iterationStatus : ${listPilot}"
+                                            th:if="${iterationStatus.index < 3}"
+                                        >
                                             <td th:text="${pilot.namaPilot}"></td>
                                             <td th:text="${pilot.nomorNIP}"></td>
+                                            <td th:text="${pilot.listPilotPenerbangan.size()}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

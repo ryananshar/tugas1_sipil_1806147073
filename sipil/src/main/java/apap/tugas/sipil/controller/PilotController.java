@@ -69,18 +69,6 @@ public class PilotController {
                 
             }
         }
-        
-        // if (idAkademi != null && kodeMaskapai != null) {
-        //     maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
-        //     akademiModel = akademiService.getAkademiById(idAkademi);
-        //     listPilot = pilotService.getPilotListByMaskapaiAndAkademi(maskapaiModel, akademiModel);
-        // } else if (kodeMaskapai != null) {
-        //     maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
-        //     listPilot = pilotService.getPilotListByMaskapai(maskapaiModel);
-        // } else if (idAkademi != null) {
-        //     akademiModel = akademiService.getAkademiById(idAkademi);
-        //     listPilot = pilotService.getPilotListByAkademi(akademiModel);
-        // }
         model.addAttribute("listAkademi", listAkademi); 
         model.addAttribute("listMaskapai", listMaskapai); 
         model.addAttribute("listPilot", listPilot);
@@ -88,6 +76,30 @@ public class PilotController {
         model.addAttribute("maskapaiModel", maskapaiModel);
 
         return "cari-maskapai-akademi";
+    }
+
+    @RequestMapping("/cari/pilot/penerbangan-terbanyak")
+    public String cariPilotPenerbanganTerbanyak(
+        @RequestParam(value = "kodeMaskapai", required = false) String kodeMaskapai,
+        Model model
+    ) {
+        List<MaskapaiModel> listMaskapai = maskapaiService.getMaskapaiList();
+        List<PilotModel> listPilot = null;
+
+        MaskapaiModel maskapaiModel = new MaskapaiModel();
+
+        try {
+            maskapaiModel = maskapaiService.getMaskapaiByKode(kodeMaskapai);
+            // listPilot = pilotService.getPilotListByMaskapai(maskapaiModel);
+            listPilot = pilotService.getTop3Pilot(maskapaiModel);
+            
+        } catch (Exception e) {   
+        }
+        model.addAttribute("listMaskapai", listMaskapai); 
+        model.addAttribute("listPilot", listPilot);
+        model.addAttribute("maskapaiModel", maskapaiModel);
+
+        return "cari-penerbangan-terbanyak";
     }
 
     @GetMapping("/pilot")

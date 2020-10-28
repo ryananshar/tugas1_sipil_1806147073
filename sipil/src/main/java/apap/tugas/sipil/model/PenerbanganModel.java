@@ -36,7 +36,7 @@ public class PenerbanganModel implements Serializable {
     private String kotaTujuan;
 
     @NotNull
-    // @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "waktu", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date waktuPenerbangan;
