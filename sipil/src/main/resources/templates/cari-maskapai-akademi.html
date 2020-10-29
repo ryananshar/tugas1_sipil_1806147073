@@ -21,7 +21,7 @@
                             <select name="kodeMaskapai" class="form-control">
                                 <option value="">Kode Maskapai</option>
                                 <option th:each="maskapai : ${listMaskapai}" th:text="${maskapai.kodeMaskapai}" 
-                                    th:selected="${maskapaiModel == maskapai}"
+                                    th:selected="${maskapaiModel.kodeMaskapai == maskapai.kodeMaskapai}"
                                     th:value="${maskapai.kodeMaskapai}"></option>
                             </select>
                         </div>
@@ -30,7 +30,7 @@
                             <select name="idAkademi" class="form-control">
                                 <option value="">Nama Sekolah</option>
                                 <option th:each="akademi : ${listAkademi}" th:text="${akademi.namaAkademi}" 
-                                    th:selected="${akademiModel == akademi}"        
+                                    th:selected="${akademiModel.idAkademi == akademi.idAkademi}"        
                                     th:value="${akademi.idAkademi}"></option>
                             </select>
                         </div>

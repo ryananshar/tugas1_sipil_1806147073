@@ -50,7 +50,8 @@ public interface PilotDb extends JpaRepository<PilotModel, Long>{
         "ON q.pilotModel.idPilot = p.idPilot " +
         "LEFT JOIN PenerbanganModel r " +
         "ON q.penerbanganModel.kodePenerbangan = r.kodePenerbangan " +
-        "WHERE r.waktuPenerbangan BETWEEN (:lastMonth) AND (:thisMonth)"
+        "WHERE r.waktuPenerbangan BETWEEN (:lastMonth) AND (:thisMonth) " +
+        "GROUP BY p.namaPilot"
         )
 	List<PilotModel> findPilotByThisMonth(@Param("lastMonth") Date lastMonth, @Param("thisMonth") Date thisMonth);
 
