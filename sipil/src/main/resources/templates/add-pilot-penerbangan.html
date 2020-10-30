@@ -10,23 +10,21 @@
 
 <body>
     <nav th:replace="fragments/fragment :: navbar"></nav>
-    <div class="jumbotron jumbotron-fluid" id="center">
-        <div class="container-fluid">
-            <div class="row justify-content-center" id="center">
-                <div class="col-md-9">
-                    <h2 th:text="'Pilot bernama ' + ${pilot.namaPilot} + ' berhasil ditambahkan'"></h2>
-                    <h2 th:text="'pada Penerbangan ' + ${penerbangan.kodePenerbangan}"></h2>
-                </div>
-            </div>
-            <br><br>
-            <div class="row justify-content-center" id="center">
-                <div class="col-md-4">
-                    <a th:href="@{/penerbangan}" class="btn btn-success">
-                        Kembali ke Daftar Penerbangan
-                    </a>
-                </div>
+    <div class="container-fluid list-margin">
+        <div class="row justify-content-center" id="center">
+            <div class="col-md-9">
+                <h2 th:text="'Pilot bernama ' + ${pilot.namaPilot} + ' berhasil ditambahkan'"></h2>
+                <h2 th:text="'pada Penerbangan ' + ${penerbangan.kodePenerbangan}"></h2>
             </div>
         </div>
-    </div>        
+        <br><br>
+        <div class="row justify-content-center" id="center">
+            <div class="col-md-4">
+                <a th:href="@{/penerbangan}" class="btn but-success">
+                    Kembali ke Daftar Penerbangan
+                </a>
+            </div>
+        </div>
+    </div>      
 </body>
 </html>

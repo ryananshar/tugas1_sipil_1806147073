@@ -11,10 +11,10 @@
 <body>
     <nav th:replace="fragments/fragment :: navbar"></nav>
     <br>
-    <div class="container-fluid">
+    <div class="container-fluid list-margin">
         <div th:if="${message} != null">  
             <div class="row justify-content-center">
-                <div class="col-5">
+                <div class="col-md-5">
                     <div class="card">
                         <div class="card-header">
                             Error
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <br>
-                    <a th:href="@{/}" class="btn btn-success">
+                    <a th:href="@{/}" class="btn but-success">
                         Kembali
                     </a>
                 </div>
@@ -36,15 +36,15 @@
         </div>
         <div th:unless="${message} != null">
             <section>
-                <div class="row justify-content-center">
-                    <div class="col-5">
+                <div class="row justify-content-center list-margin">
+                    <div class="col-md-5">
                         <div class="card">
                             <div class="card-header" id="text-center">
                                 <h4>Detail Penerbangan</h4>
                             </div>
                             <div class="card-body">                
                                 <div class="form-row">
-                                    <div class="col-5">
+                                    <div class="col-md-4">
                                         <div th:text="'ID'"></div>
                                         <br>
                                         <div th:text="'Kode Penerbangan'"></div>
@@ -56,7 +56,7 @@
                                         <div th:text="'Kota Tujuan'"></div>
                                         <br>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-md-4">
                                         <div th:text="': ' + ${penerbangan.getIdPenerbangan()}"></div>
                                         <br>
                                         <div th:text="': ' + ${penerbangan.kodePenerbangan}"></div>
@@ -70,8 +70,8 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-end">
-                                    <a th:href="@{/penerbangan/ubah/} + ${penerbangan.idPenerbangan}" class="btn btn-success">Ubah</a>
-                                    <a th:href="@{/penerbangan/hapus/} + ${penerbangan.idPenerbangan}" class="btn btn-danger">Hapus</a>
+                                    <a th:href="@{/penerbangan/ubah/} + ${penerbangan.idPenerbangan}" class="btn but-success">Ubah</a>
+                                    <a th:href="@{/penerbangan/hapus/} + ${penerbangan.idPenerbangan}" class="btn but-danger">Hapus</a>
                                 </div>                            
                             </div>
                         </div>
@@ -81,7 +81,7 @@
             <br><br> 
             <section>
                 <div class="row justify-content-center">
-                    <div class="col-9">
+                    <div class="col-md-9">
                         <form th:action="@{/penerbangan/}+${idPenerbangan}+@{/pilot/tambah}" th:object="${pilotPenerbangan}" method="POST">
                             <div class="row">
                                 <div class="col-4">
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="col">
                                     <p></p><br>
-                                    <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+                                    <button class="btn but-success" type="submit" value="Submit">Submit</button>
                                 </div>
                             </div>                            
                         </form>
@@ -110,7 +110,7 @@
                             <div class="card-body">                
                                 <div class="form-row">
                                     <div class="col">
-                                        <table class="table" id="center">
+                                        <table class="table table-hover table-fixed" id="center">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>

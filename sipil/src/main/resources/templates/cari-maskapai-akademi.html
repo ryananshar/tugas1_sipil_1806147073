@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <br><br><br>
         <div class="row justify-content-center">
-            <div class="col-6">
+            <div class="col-md-5">
                 <form th:action="@{/cari/pilot}" method="GET">
                     <div class="row">
                         <div class="col-4">
@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-2">
                             <p></p><br>
-                            <button class="btn btn-success"  type="submit" value="Submit">Submit</button>
+                            <button class="btn but-success"  type="submit" value="Submit">Submit</button>
                         </div>
                     </div>                            
                 </form>
@@ -44,7 +44,7 @@
         </div>
         <br><br><br>
         <div th:if="${listPilot} != null" class="row justify-content-center">
-            <div class="col-9">
+            <div class="col-md-5">
                 <div class="card">
                     <div class="card-header" id="text-center">
                         <h4>Daftar Pilot</h4>
@@ -52,7 +52,7 @@
                     <div class="card-body">                
                         <div class="form-row">
                             <div class="col">
-                                <table class="table" id="center">
+                                <table class="table table-hover table-fixed" id="center">
                                     <thead>
                                         <tr>
                                             <th>No</th>

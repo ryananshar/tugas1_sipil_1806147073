@@ -10,26 +10,42 @@
 
 <body>
     <nav th:replace="fragments/fragment :: navbar"></nav>
-    <div class="jumbotron jumbotron-fluid" id="center">
-        <div class="container">
-            <h1>Selamat datang di SIPILOT!</h1>
-            <p>Sistem informasi untuk manajemen para pilot</p> 
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container" id="center">
+            <div class="col">
+                <h1 class="title">Selamat Datang di SIPILOT!</h1>
+                <p class="subtitle">Sistem informasi untuk manajemen pengelolaan pilot dan jadwal penerbangan</p>
+            </div>                
         </div>
     </div>
     <div class="container-fluid">
         <div class="row justify-content-center" id="center">
-            <div class="col-md-4">
-                <h2> Daftar Fitur</h2>
+            <div class="col">
+                <h2 class="fitur"> Daftar Fitur</h2>
                 <br>
-                <a th:href="@{/pilot}" class="btn btn-success">
-                    Pilot
-                </a>
-                <a th:href="@{/penerbangan}" class="btn btn-success">
-                    Penerbangan
-                </a>
-                <a th:href="@{/cari}" class="btn btn-success">
-                    Cari
-                </a>
+                <div class="row justify-content-center list-fitur">
+                    <div class="list-pilot col-md-3 fix">
+                        <p>List Pilot</p>
+                        <img th:src="@{/img/pilot-icon.png}">
+                        <a th:href="@{/pilot}" class="btn">
+                            Pilot
+                        </a>
+                    </div>
+                    <div class="list-penerbangan col-md-3 fix">
+                        <p>List Penerbangan</p>
+                        <img th:src="@{/img/plane-icon.png}">
+                        <a th:href="@{/penerbangan}" class="btn">
+                            Penerbangan
+                        </a>
+                    </div>
+                    <div class="cari-pilot col-md-3 fix">
+                        <p>Cari Pilot</p>
+                        <img th:src="@{/img/search-icon.png}">
+                        <a th:href="@{/cari}" class="btn">
+                            Cari
+                        </a>
+                    </div>
+                </div>                
             </div>
         </div>
     </div>

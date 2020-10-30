@@ -10,21 +10,19 @@
 
 <body>
     <nav th:replace="fragments/fragment :: navbar"></nav>
-    <div class="jumbotron jumbotron-fluid" id="center">
-        <div class="container-fluid">
-            <div class="row justify-content-center" id="center">
-                <div class="col-md-4">
-                    <h2 th:text="'Pilot dengan NIP ' + ${pilot.nomorNIP}"></h2>
-                    <h2 th:text="'berhasil dihapus'"></h2>
-                </div>
+    <div class="container-fluid list-margin">
+        <div class="row justify-content-center" id="center">
+            <div class="col-md-4">
+                <h2 th:text="'Pilot dengan NIP ' + ${pilot.nomorNIP}"></h2>
+                <h2 th:text="'berhasil dihapus'"></h2>
             </div>
-            <br><br>
-            <div class="row justify-content-center" id="center">
-                <div class="col-md-4">
-                    <a th:href="@{/pilot}" class="btn btn-success">
-                        Kembali ke Daftar Pilot
-                    </a>
-                </div>
+        </div>
+        <br><br>
+        <div class="row justify-content-center" id="center">
+            <div class="col-md-4">
+                <a th:href="@{/pilot}" class="btn but-success">
+                    Kembali ke Daftar Pilot
+                </a>
             </div>
         </div>
     </div>        

@@ -2,9 +2,12 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Fragment</title>
     <head th:fragment="css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
     </head>
 
     <head th:fragment="js">
@@ -30,8 +33,8 @@
 
 <body>
     <nav th:fragment="navbar" 
-        class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a class="navbar-brand font-weight-bold text-success" href="/">
+        class="navbar navbar-expand-lg navbar-light">
+        <a class="brand navbar-brand" href="/">
             SIPILOT
         </a>
         <button
@@ -46,18 +49,18 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav mr-auto">
+            <ul class="menu navbar-nav mr-auto">
                 <a class="nav-item nav-link active text-secondary" th:href="@{/pilot}">
-                    Pilot <span class="sr-only">(current)</span>
+                    PILOT <span class="sr-only">(current)</span>
                 </a>
                 <a class="nav-item nav-link active text-secondary" th:href="@{/penerbangan}">
-                    Penerbangan <span class="sr-only">(current)</span>
+                    PENERBANGAN <span class="sr-only">(current)</span>
                 </a>
                 <a class="nav-item nav-link active text-secondary" th:href="@{/cari}">
-                    Cari <span class="sr-only">(current)</span>
+                    CARI <span class="sr-only">(current)</span>
                 </a>
                 <a class="nav-item nav-link active text-secondary" th:href="@{/cari/pilot/bulan-ini}">
-                    Bonus <span class="sr-only">(current)</span>
+                    BONUS <span class="sr-only">(current)</span>
                 </a>
             </ul>
         </div>

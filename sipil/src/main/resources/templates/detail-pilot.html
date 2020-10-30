@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <br>
-                    <a th:href="@{/}" class="btn btn-success">
+                    <a th:href="@{/}" class="btn but-success">
                         Kembali
                     </a>
                 </div>
@@ -89,8 +89,8 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-end">
-                                    <a th:href="@{/pilot/ubah/} + ${pilot.nomorNIP}" class="btn btn-success">Ubah</a>
-                                    <a th:href="@{/pilot/hapus/} + ${pilot.idPilot}" class="btn btn-danger">Hapus</a>
+                                    <a th:href="@{/pilot/ubah/} + ${pilot.nomorNIP}" class="btn but-success">Ubah</a>
+                                    <a th:href="@{/pilot/hapus/} + ${pilot.idPilot}" class="btn but-danger">Hapus</a>
                                 </div>                            
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                                                     <td th:text="${penerbangan.penerbanganModel.kotaAsal}"></td>
                                                     <td th:text="${penerbangan.penerbanganModel.kotaTujuan}"></td>
                                                     <td>
-                                                        <a th:href="@{/penerbangan/detail/} + ${penerbangan.penerbanganModel.idPenerbangan}" class="btn btn-success">Lihat</a>
+                                                        <a th:href="@{/penerbangan/detail/} + ${penerbangan.penerbanganModel.idPenerbangan}" class="btn but-success">Lihat</a>
                                                     </td>
                                                 </tr>
                                             </tbody>

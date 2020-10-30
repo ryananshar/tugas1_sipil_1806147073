@@ -12,10 +12,10 @@
     <nav th:replace="fragments/fragment :: navbar"></nav>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-11">
+            <div class="col-md-11">
                 <a 
                     th:href="@{/penerbangan/tambah}"
-                    class="btn btn-success"
+                    class="btn but-add-success"
                     >+ Tambah Penerbangan</a
                 >
                 <br><br>
@@ -26,7 +26,7 @@
                     <div class="card-body">                
                         <div class="form-row">
                             <div class="col">
-                                <table class="table">
+                                <table class="table table-hover table-fixed">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -45,9 +45,9 @@
                                             <td th:text="${penerbangan.kotaAsal}"></td>
                                             <td th:text="${penerbangan.kotaTujuan}"></td>
                                             <td>
-                                                <a th:href="@{/penerbangan/detail/} + ${penerbangan.idPenerbangan}" class="btn btn-success" >Lihat</a>
-                                                <a th:href="@{/penerbangan/ubah/} + ${penerbangan.idPenerbangan}" class="btn btn-outline-success">Ubah</a>
-                                                <a th:href="@{/penerbangan/hapus/} + ${penerbangan.idPenerbangan}" class="btn btn-danger">Hapus</a>
+                                                <a th:href="@{/penerbangan/detail/} + ${penerbangan.idPenerbangan}" class="btn but-success" >Lihat</a>
+                                                <a th:href="@{/penerbangan/ubah/} + ${penerbangan.idPenerbangan}" class="btn but-outline">Ubah</a>
+                                                <a th:href="@{/penerbangan/hapus/} + ${penerbangan.idPenerbangan}" class="btn but-danger">Hapus</a>
                                             </td>                                                
                                         </tr>
                                     </tbody>
