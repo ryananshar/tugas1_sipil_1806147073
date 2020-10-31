@@ -1,0 +1,1 @@
+java -jar tugas1_sipil_1806147073.jar
